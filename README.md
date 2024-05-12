@@ -1,8 +1,8 @@
 These are my solutions to the Problems posted on LeetCode Website, an competitive coding and interview preparation platform. 
 I solve Problems based on Arrays, Strings, Linked Lists, Matrix, Numerical Problems, Backtracking and other Data Structures and Algorithms.
-| Currently Solved Problems : 39 |
-| Best Solutions (based on Runtime) : 36 / 39 |
-| Difficulty Distribution : | Easy = 20 |
+| Currently Solved Problems : 42 |
+| Best Solutions (based on Runtime) : 39 / 42 |
+| Difficulty Distribution : | Easy = 22 |
                           | Medium = 19 |
                           | Hard = 1 | 
 
