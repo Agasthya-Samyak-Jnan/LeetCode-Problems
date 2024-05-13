@@ -4,7 +4,7 @@ I solve Problems based on Arrays, Strings, Linked Lists, Matrix, Numerical Probl
 | Currently Solved Problems : 47
 | Best Solutions (based on Runtime) : 44 / 47
 | Difficulty Distribution : 
-                          | Easy = 26 
+                            Easy = 26 
                           | Medium = 20 
                           | Hard = 1 | 
 
