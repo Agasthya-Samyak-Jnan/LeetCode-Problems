@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#include<vector>
 
 // Link to the Problem: https://leetcode.com/problems/smallest-even-multiple/
 // Difficulty: Easy
