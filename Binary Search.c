@@ -19,9 +19,9 @@ int search(int* a, int n, int key) {
 /*Recursive Binary Search
 
 int search (int* a, int low, int high, int key) {
-    if (a[(low+high)/2)] == key) { return (low+high)/2; }
+    if (a[(low+high)/2] == key) { return (low+high)/2; }
     if (low >= high) { return -1; }
-    if (a[(low+high)/2)] < key) { search(a, (low+high)/2 + 1, high, key); }
+    if (a[(low+high)/2] < key) { search(a, (low+high)/2 + 1, high, key); }
     else { search(a, low, (low+high)/2 , key); }
 }
 */
