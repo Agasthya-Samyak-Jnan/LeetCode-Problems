@@ -14,26 +14,7 @@ struct TreeNode {
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-/* 
-   Before You go below to Check Solution :
-
-   PreOrder = Root(Present Node) --> Left Node --> Right Node  
-   => First Value Of PreOrder is ALWAYS CURRENT NODE VALUE.
-
-   InOrder = Left Node --> Root(Present Node) --> Right Node  
-   => Values Left to CURRENT NODE VALUE all belong to LEFT SUBTREE in InOrder.
-   => Values RIGHT to CURRENT NODE VALUE all belong to RIGHT SUBTREE in InOrder.
-*/
-
-/* DIVIDE AND CONQUER METHOD : 
-   1. Find CURRENT NODE VALUE from PreOrder Array - Which is always the first value of preorder array.
-   2. Find Position of this CURRENT NODE VALUE in Inorder array.      (this value is guaranteed to be in inorder. both orders are of same tree).
-   3. Divide Inorder Array into Left and Right Partitions using CURRENT NODE VALUE.            (You NEED NOT divide Preorder Array, its your choice. ).
-   4. Find CURRENT NODE VALUE'S Left and Right Node Values by Sending Partitoned Arrays to each Recursive Call.
-   5. If Partition has NO ELEMENTS (Size = 0), Then RETURN null pointer. (End of a Subtree)
-*/
-
-/* RAW LOGIC IMPLEMENTATION : LOGIC DIRECTLY FROM BRAIN CONVERTED TO CODE - Space Complexity : O(2^N), Time Complexity : O(N) */
+/* DIVIDE AND CONQUER METHOD - TC : O(n^2), SC : O(n) */
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
@@ -67,7 +48,7 @@ public:
     }
 };
 
-/* OPTIMIZED SPACE USAGE - Space Complexity : O(1), Time Complexity : O(N) */
+/* OPTIMIZED SPACE USAGE */
 class Solution {
 public:
     vector<int> preorder;
@@ -93,6 +74,37 @@ public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         this->preorder = preorder;
         this->inorder = inorder;
+        return builder(0,0,inorder.size());
+    }
+};
+
+/* DIVIDE AND CONQUER + HASH TABLE - TC : O(n), SC : O(n) */
+class Solution {
+public:
+    vector<int> preorder;
+    vector<int> inorder;
+    int n;
+    unordered_map<int,int> mp;
+    
+    TreeNode* builder (int prestart, int instart, int inend) {
+        
+        if (instart >= inend) { return nullptr; }
+        
+        int nodeval = preorder[prestart], divide = mp[nodeval];
+        
+        int leftsize = divide-instart;
+        
+        TreeNode* left = builder(prestart+1,instart,divide);
+        TreeNode* right = builder(prestart+1+leftsize,divide+1,inend);
+        
+        return new TreeNode(nodeval,left,right);
+    }
+    
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        this->preorder = preorder;
+        this->inorder = inorder;
+        n = inorder.size();
+        for (int i=0;i<n;i++) { mp[inorder[i]] = i; }
         return builder(0,0,inorder.size());
     }
 };
