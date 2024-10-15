@@ -2,20 +2,51 @@
 
 using namespace std;
 
-// Link to the Problem : https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
-// Difficulty : Hard
+// Link to the Problem : https://leetcode.com/problems/serialize-and-deserialize-bst/
+// Difficulty : Medium 
 
 struct TreeNode {
      int val;
      TreeNode *left;
      TreeNode *right;
-     TreeNode() : val(0), left(nullptr), right(nullptr) {}
-     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-// BREADTH-FIRST SEARCH FOR SERIALIZATION AND DESERIALIZATION
-// '.' AND '_' AS SEPERATORS FOR EACH DATA UNIT OR NODE.
+
+// Seperation of Nodes using '.' and nullptr represented by '_'
+
+// DEPTH-FIRST SEARCH SERIALIZATION
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        if (!root) { return "_."; }
+        return to_string(root->val) + "." + serialize(root->left) + serialize(root->right);
+    }
+    
+    TreeNode* dfs (string& s, int& i) {
+        
+        string temp;
+        while (s[i] != '.') { temp += s[i]; i++; }
+        
+        if (temp == "_") { return nullptr; }
+        TreeNode* root = new TreeNode(stoi(temp));
+        root->left = dfs(s,++i);
+        root->right = dfs(s,++i);
+        
+        return root;
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string s) {
+        int i=0;
+        return dfs(s,i);
+    }
+};
+
+
+// BREADTH-FIRST SEARCH SERIALIZATION
 class Codec {
 public:
 
@@ -85,29 +116,3 @@ public:
         return root;
     }
 };
-
-// Tester to Check Tree
-void dfs (TreeNode* root) {
-    if (!root) { return; }
-    cout<<root->val<<" ";
-    dfs(root->left);
-    dfs(root->right);
-}
-
-// TESTER CODE
-int main () {
-
-    TreeNode a = {400,nullptr,nullptr};
-    TreeNode b = {500,nullptr,nullptr};
-    TreeNode c = {30,&a,&b};
-    TreeNode d = {2,nullptr,nullptr};
-    TreeNode root = {1000,&d,&c};
-
-    Codec* codec = new Codec();
-
-    TreeNode* Root = codec->deserialize(codec->serialize(&root));
-
-    dfs(Root);
-
-    return 0;
-}

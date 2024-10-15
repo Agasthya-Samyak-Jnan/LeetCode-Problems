@@ -97,7 +97,7 @@ public:
     }
 };
 
-
+/* IF YOU TO OPTIMIZE TIME FOR LARGE INPUTS : WORD INCLUDED IN TRIE ITSELF. */
 /* Custom Written Trie Data Structure */ 
 class Trie {
 public:
@@ -121,11 +121,9 @@ public:
          }
          t->word = word;
          if(!t->is_Word) { t->letters++; t->is_Word = true; }
-    }
-    
+    }   
 };
 
-/* IF YOU TO OPTIMIZE TIME FOR LARGE INPUTS : WORD INCLUDED IN TRIE ITSELF. */
 class Solution {
 public:
     
