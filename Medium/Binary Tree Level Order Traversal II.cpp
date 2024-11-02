@@ -5,7 +5,6 @@ using namespace std;
 // Link to the Problem : https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 // Difficulty : Medium
 
-
 struct TreeNode {
      int val;
      TreeNode *left;
