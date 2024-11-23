@@ -2,10 +2,10 @@
 
 using namespace std;
 
-// Link to the Problem : https://leetcode.com/problems/find-peak-element/
-// Difficulty : Medium
+// Link to the Problem : https://leetcode.com/problems/peak-index-in-a-mountain-array/
+// Difficulty : Medium 
 
-/* BINARY SEARCH : REDUCE SEARCH SPACE BASED ON YOUR REQUIREMENTS */
+/* BINARY SEARCH METHOD */
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
