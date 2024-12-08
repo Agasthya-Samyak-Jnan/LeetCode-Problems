@@ -7,7 +7,7 @@ using namespace std;
 
 /*
     M = Number of Banned Numbers. (banned.size()) - [0,10^4]
-    N = Range of Given Numbers. [1,n] - [0,10^9]
+    N = Range of Given Numbers. [1,n] - [0,10^4]
     ans = Maximum Number of Numbers whose Sum <= maxSum and do not contain any banned Numbers. - [1,~10^5]
 */
 
