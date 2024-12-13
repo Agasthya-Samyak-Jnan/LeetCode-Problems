@@ -29,3 +29,23 @@ public:
         
     }
 };
+
+/* PYTHON3 VERSION 
+
+    class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        
+        if not list1 and not list2 :
+            return None
+        
+        if list1 and not list2 :
+            return ListNode(list1.val,self.mergeTwoLists(list1.next,list2))
+        
+        if not list1 and list2 :
+            return ListNode(list2.val,self.mergeTwoLists(list1,list2.next))
+        
+        if list1.val < list2.val :
+            return ListNode(list1.val,self.mergeTwoLists(list1.next,list2))
+        
+        return ListNode(list2.val,self.mergeTwoLists(list1,list2.next))
+*/

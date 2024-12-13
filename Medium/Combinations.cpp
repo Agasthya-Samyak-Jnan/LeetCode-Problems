@@ -61,3 +61,31 @@ public:
         return ans;
     }
 };
+
+/* PYTHON3 VERSION 
+
+class Solution:
+    
+    def __init__ (self) :
+        self.temp = []
+        self.ans = []
+        self.n = 0
+    
+    def solve (self,i: int, k: int) :
+        
+        if k == 0 :
+            self.ans.append(copy.deepcopy(self.temp))
+            return
+        
+        for j in range(i+1,self.n+1):
+            self.temp.append(j)
+            self.solve(j,k-1)
+            self.temp.pop()
+    
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        
+        self.n = n
+        self.solve(0,k)
+        
+        return self.ans
+*/

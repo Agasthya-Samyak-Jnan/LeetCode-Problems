@@ -28,3 +28,30 @@ public:
     return max; 
    }
 };
+
+/* PYTHON3 VERSION
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        
+        maxlen = 0
+        n = len(s)
+        i = 0
+        j = 0
+        found = [0]*256
+        
+        while j < n :
+            if found[ord(s[j])] == 0 :
+                found[ord(s[j])] = 1
+                maxlen = max(maxlen,j-i+1)
+                j+= 1
+            else :
+                while found[ord(s[j])] == 1 :
+                    found[ord(s[i])] = 0 
+                    i += 1
+                found[ord(s[j])] = 1
+                j += 1
+        
+        
+        return maxlen
+*/

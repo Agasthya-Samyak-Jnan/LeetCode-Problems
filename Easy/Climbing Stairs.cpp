@@ -35,6 +35,15 @@ public:
     }
 };
 
+/* PYTHON3 VERSION 
+
+    class Solution:
+        def climbStairs(self, n: int) -> int:
+            if n == 0 or n == 1 :
+                return 1
+            return self.climbStairs(n-1) + self.climbStairs(n-2)
+*/
+
 /* 2. Memoized-Recursive Solution (Linear Time + Linear Space + Recursion Call Stack Space) - 0ms Runtime */
 class Solution {
 public:
@@ -51,7 +60,25 @@ public:
     }
 };
 
-/* 3. Memoized-Iterative Solution (Linear Time - Linear Space) - 0ms Runtime */
+/* PYTHON3 VERSION 
+
+    class Solution:
+    
+    def __init__ (self) :
+        self.dp = [-1]*46
+    
+    def climbStairs(self, n: int) -> int:
+        if n == 0 or n == 1 :
+            return 1
+        if self.dp[n] != -1 :
+            return self.dp[n]
+        
+        self.dp[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
+        return self.dp[n]
+    
+*/
+
+/* 3. Tabulation-Iterative Solution (Linear Time - Linear Space) - 0ms Runtime */
 class Solution {
 public: 
     int climbStairs(int n) {
@@ -63,6 +90,23 @@ public:
         return dp[n];
     }
 };
+
+/* PYTHON3 VERSION 
+
+    class Solution:
+
+    def climbStairs(self, n: int) -> int:
+        
+        dp = [-1]*46
+        dp[0] = 1
+        dp[1] = 1
+        
+        for i in range(2,n+1) :
+            dp[i] = dp[i-1] + dp[i-2]
+        
+        return dp[n]
+    
+*/
 
 /* Constant_Space-Iterative Solution (Linear Time - Constant Space) - 2ms Runtime */
 class Solution {

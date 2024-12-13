@@ -111,3 +111,37 @@ public:
         return head->next;
     }
 };
+
+/* PYTHON3 VERSION - PRIORITY QUEUE - MIN-HEAP METHOD 
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+import heapq
+from typing import List, Optional
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        
+        min_heap = []
+        head = ListNode(0)
+        curr = head
+
+        # Add each list to the heap with a unique index
+        for i,L in enumerate(lists):
+            if L:
+                heapq.heappush(min_heap, (L.val,i,L))
+
+        while min_heap:
+            val, i, node = heapq.heappop(min_heap)
+
+            curr.next = node
+            curr = curr.next
+
+            if node.next:
+                heapq.heappush(min_heap, (node.next.val, i, node.next))
+
+        return head.next
+*/

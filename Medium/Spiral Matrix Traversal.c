@@ -42,3 +42,56 @@ int* spiralOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSi
     } 
     return ans;
 }
+
+/* PYTHON3 VERSION 
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        
+        m = len(matrix)
+        n = len(matrix[0])
+        left = 0
+        right = n-1
+        up = 0
+        down = m-1
+        i = 0
+        j = 0
+        ans = []
+        
+        while j < m*n:
+            
+            # Right 
+            i = left
+            while i <= right and j < m*n:
+                ans.append(matrix[up][i]) 
+                i += 1
+                j += 1
+            up += 1
+            
+            # Down
+            i = up
+            while i <= down and j < m*n:
+                ans.append(matrix[i][right])
+                i += 1
+                j += 1
+            right -= 1
+            
+            # Left
+            i = right
+            while i >= left and j < m*n:
+                ans.append(matrix[down][i])
+                i -= 1
+                j += 1
+            down -= 1
+            
+            # Up
+            i = down
+            while i >= up and j < m*n:
+                ans.append(matrix[i][left])
+                i -= 1
+                j += 1
+            left += 1
+                
+        return ans
+
+*/
