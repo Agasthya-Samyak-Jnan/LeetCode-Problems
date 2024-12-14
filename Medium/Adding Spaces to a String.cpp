@@ -26,3 +26,20 @@ public:
         return ans;
     }
 };
+
+/* PYTHON3 VERSION 
+
+class Solution:
+    def addSpaces(self, s: str, spaces: List[int]) -> str:
+        ans = [] # Python String is Immutable. Hence a List is used for Answer.
+        i = 0
+        
+        for index in spaces:   # Loop through every 'index' to insert all spaces.
+            ans.append(s[i:index])   # Append Characters till 'index'.
+            ans.append(" ")  # Add Space at 'index'.
+            i = index # Move 'i' accordingly.
+        
+        ans.append(s[i:])  # Add remaining characters from 'i' till end of string.
+        
+        return ''.join(ans)  # Join all string elements of answer List into a single String.
+*/

@@ -57,3 +57,38 @@ vector<int> findAnagrams(string s, string p) {
         return ans;
     }
 
+/* PYTHON3 VERSION 
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        
+        if len(p) > len(s) :
+            return []
+        
+        ans = []
+        freq1 = defaultdict(int)
+        freq2 = defaultdict(int)
+        i = 0
+        j = len(p)-1
+        n = len(s)
+        
+        for k in range(len(p)) :
+            freq1[p[k]] += 1
+            freq2[s[k]] += 1
+        
+        while j < n :
+            
+            if freq1 == freq2 :
+                ans.append(i)
+                
+            freq2[s[i]] -= 1
+            if freq2[s[i]] == 0 :
+                del freq2[s[i]]
+            i += 1
+            j += 1
+            if j < n :
+                freq2[s[j]] += 1
+        
+        
+        return ans
+*/

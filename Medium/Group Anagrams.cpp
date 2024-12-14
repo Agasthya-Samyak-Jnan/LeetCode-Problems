@@ -48,3 +48,24 @@ public:
         return ans;
     }
 };
+
+/* PYTHON3 VERSION
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        ans = []
+        index_of_anagram_of = defaultdict(list)
+        i = 0
+        
+        
+        for s in strs :
+            temp = ''.join(sorted(s))
+            if temp not in index_of_anagram_of :
+                index_of_anagram_of[temp] = i
+                i += 1
+                ans.append([])
+            ans[index_of_anagram_of[temp]].append(s)
+            
+        return ans
+*/
