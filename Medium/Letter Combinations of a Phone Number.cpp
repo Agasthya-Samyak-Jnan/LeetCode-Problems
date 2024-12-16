@@ -41,3 +41,29 @@ int main () {
 
     return 0;
 }
+
+/* PYTHON3 VERSION 
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        
+        if digits == "" :
+            return []
+        
+        # Key Mappings
+        keys = [[],[],['a','b','c'],['d','e','f'],['g','h','i'],['j','k','l'],['m','n','o'],['p','q','r','s'],['t','u','v'],['w','x','y','z']];
+        
+        ans = [""]
+        temp = []
+        
+        # Backtracking
+        for digit in digits :
+            for combination in ans :
+                for letter in keys[int(digit)] :
+                    temp.append(combination + letter)
+            
+            ans = temp
+            temp = []
+        
+        return ans
+*/
