@@ -31,3 +31,37 @@ vector<vector<int>> permute (vector<int> &num) {
     permutations(ans,num,0);
     return ans;
 }
+
+/* 
+PYTHON3 VERSION 
+
+class Solution:
+    def __init__ (self) :
+        self.ans = []
+        self.temp = []
+        self.selected = 0
+        self.nums = []
+        self.n = 0
+    
+    def solve (self) :
+        if self.selected != pow(2,self.n)-1 :
+            for i in range(0,self.n) :
+                if (self.selected>>i)&1 == 1 :
+                    continue
+                self.temp.append(self.nums[i])
+                self.selected = self.selected^(1<<i)
+                self.solve()
+                self.selected = self.selected&(~(1<<i))
+                self.temp.pop()
+        else :
+            self.ans.append(copy.deepcopy(self.temp))
+    
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        self.nums = nums
+        self.n = len(nums)
+        
+        self.solve()
+        
+        return self.ans
+*/
