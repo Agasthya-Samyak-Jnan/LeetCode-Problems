@@ -41,9 +41,8 @@ public:
             parent[a] = a; 
             rank[a] = 0;
         }
-        if (a == parent[a]) { return a; }
-        parent[a] = find(parent[a]); // Compress the Recursive Path to parent by directly connecting this node to its parent.
-        return parent[a];
+        if (a == parent[a]) { return a; }          
+        return parent[a] = find(parent[a]); // Compress the Recursive Path to parent by directly connecting this node to its parent.
     }
 };
 
