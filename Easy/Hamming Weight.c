@@ -28,3 +28,23 @@ int hammingWeight(int n) {
     }
     return i;
 }
+
+// Simplest and most Intuitive Way
+int hammingWeight(int n) {
+        
+        int weight = 0;
+        
+        while (n) {
+            weight += n%2;
+            n /= 2;
+        }
+        
+        return weight;
+}
+
+
+// Simplest and most concise Way
+int hammingWeight(int n) {
+    return n ? (n&1) + hammingWeight(n>>1) : 0;
+}
+
