@@ -38,3 +38,24 @@ public:
         return ans;
     }
 };
+
+/* PYTHON3 VERSION 
+
+class Solution:
+    def tupleSameProduct(self, nums: List[int]) -> int:
+        
+        productFreq = defaultdict(int)
+        n = len(nums)
+        ans = 0
+
+        for i in range(0,n-1) :
+            for j in range(i+1,n) :
+                productFreq[nums[i]*nums[j]] += 1
+
+        for i in productFreq.values() :
+            print(i)
+            ans += (i*(i-1))//2*8
+
+        return ans
+
+*/
