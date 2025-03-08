@@ -41,7 +41,7 @@ public:
     
     bool isSubPath(ListNode* head, TreeNode* root) {
         if (!root) { return false; }
-        // If and only if this Tree Node doesn't match Starting List Node itself, search its Left and Rightsubtrees.
+        // If and only if this Tree Node doesn't match Starting List Node itself, search its Left and Right subtrees.
         return dfs(root,head) || isSubPath(head,root->left) || isSubPath(head,root->right);
     }
 };
