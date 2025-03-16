@@ -64,7 +64,7 @@ public:
             moves++;
         }
         
-        // If it can't be solved , queue will eventually be empty and come to this point of execution.
+        // If it can't be solved , queue will eventually be empty and come to this point of program execution.
         return -1; 
     }
 };
