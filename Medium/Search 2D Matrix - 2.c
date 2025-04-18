@@ -15,7 +15,7 @@ bool searchMatrix(int** matrix, int matrixSize, int* matrixColSize, int target)
     return false;
 }
 
-/* Solution 2 : Basic Searching Algorithms - 2D Binary Search O(log(M*(M+N))) (127ms Runtime) */
+/* Solution 2 : Basic Searching Algorithms - 2D Binary Search O(logM + M*log(N)) (127ms Runtime) */
 bool searchMatrix(int** a, int m, int* n, int k) {
      int r_low = 0, r_high = (*n)-1, mid, c_high = m-1, c_low=0;
      printf("%d %d\n", m, *n);
@@ -52,3 +52,30 @@ bool searchMatrix(int** a, int m, int* n, int k) {
      }
     return false;
 }
+
+/*
+    PYTHON3 VERSION of O(m+n) Solution
+
+    class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        
+        m = len(matrix)
+        n = len(matrix[0])
+        col = n-1
+        row = 0
+
+        while row < m and col >= 0 :
+
+            if matrix[row][col] == target :
+                return True
+
+            if matrix[row][col] > target :
+                col -= 1
+
+            else :
+                row += 1  
+
+             
+        return False
+        
+*/
