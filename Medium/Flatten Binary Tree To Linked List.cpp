@@ -14,6 +14,7 @@ struct TreeNode {
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+/* DEPTH-FIRST SEARCH - O(N) SPACE */
 class Solution {
 public:
     /* To store ADDRESSES of all nodes in PREORDER arrangement */
@@ -44,4 +45,26 @@ public:
          tree[n-1]->right = nullptr;
         
     }
+};
+
+/* ULTIZING TREE STRUCTURE OF ANSWER FORMAT FOR SOLUTION - O(1) SPACE */
+class Solution {
+    public:
+        void flatten(TreeNode* root) {
+    
+            TreeNode* temp, *part;
+    
+            while (root) {
+                if (root->left) {
+                    part = root->right;
+                    root->right = root->left;
+                    root->left = nullptr;
+                    temp = root->right;
+                    while (temp->right) { temp = temp->right; }
+                    temp->right = part;
+                }
+                root = root->right;
+            }
+            
+        }
 };
