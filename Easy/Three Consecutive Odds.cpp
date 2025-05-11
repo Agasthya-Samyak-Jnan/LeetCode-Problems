@@ -5,6 +5,7 @@ using namespace std;
 // Link to the Problem : https://leetcode.com/problems/three-consecutive-odds/
 // Difficulty : Easy
 
+/* BASIC INTUITION */
 class Solution {
 public:
     bool threeConsecutiveOdds(vector<int>& arr) {
@@ -15,5 +16,13 @@ public:
              if (odds == 3) { return true; }            
          }
          return false;
+    }
+};
+
+/* FULLY COMPRESSED CODE */
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr, int i = 0, int odds = 0) {
+        return (i >= arr.size() or odds == 3) ? (odds == 3) : threeConsecutiveOdds(arr,i+1,(arr[i]%2 != 0) ? odds+1 : 0);
     }
 };
