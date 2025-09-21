@@ -6,7 +6,7 @@ using namespace std;
 // Difficulty : Medium
 
 
-/* QUEUE + SEGMENT TREE + HASH TABLE BASED SOLUTION - All Queries in Logarithimic Time */
+/* QUEUE + SEGMENT TREE + HASH TABLE BASED SOLUTION - All Queries in Logarithimic Time - 2nd Solution is Most Optimized */
 /* 
     Dynamic Segment Tree API 
     - Works on Given Domain of Numbers, 
@@ -104,10 +104,57 @@ public:
     }
 };
 
-/**
- * Your Router object will be instantiated and called as such:
- * Router* obj = new Router(memoryLimit);
- * bool param_1 = obj->addPacket(source,destination,timestamp);
- * vector<int> param_2 = obj->forwardPacket();
- * int param_3 = obj->getCount(destination,startTime,endTime);
- */
+ /* 
+    Hashing for checking if a packet is duplicate is optimised by using an unordered_set and 64-bit Numbers as identifiers,
+    instead of strings. Saved Space and Time on int-to-string conversion and memory allocation for string.
+    ~750ms optimized to ~490ms time, ~538mb to ~524mb space.
+*/
+/* Same DST Class was used here as well */
+class Router {
+public:
+
+    int limit;
+    queue<vector<int>> q;
+    unordered_set<uint64_t> packets;  // unordered_set and 64-bits Number packet identifier
+    unordered_map<int,DST> time_dest_packs;
+
+    Router(int memoryLimit) { limit = memoryLimit; }
+
+    // Converts a Packet to 64-bit Integer to use less storage and time to detect duplicates. (A method of hashing a Packet)
+    uint64_t PacketHash (uint64_t src, uint64_t dest, uint64_t time) {
+        return ((src<<47)|(dest<<30)|time);
+    }
+    
+    bool addPacket(int source, int destination, int timestamp) {
+
+        // Duplicate
+        if (packets.find(PacketHash(source,destination,timestamp)) != packets.end()) { return false; } // unordered_set and 64-bits Number packet identifier
+
+        // Out of Memory
+        if (q.size() >= limit) { forwardPacket(); }
+
+        // No issues
+        q.push({source,destination,timestamp});
+        time_dest_packs[destination].add(timestamp);
+        packets.insert(PacketHash(source,destination,timestamp)); // unordered_set and 64-bits Number packet identifier
+
+        return true;
+    }
+    
+    vector<int> forwardPacket() {
+
+        // When there are No Packets in Router 
+        if (q.size() == 0) { return {}; }
+
+        // When there are Packets in Router
+        vector<int> p = q.front(); q.pop(); 
+        packets.erase(PacketHash(p[0],p[1],p[2])); // unordered_set and 64-bits Number packet identifier
+        time_dest_packs[p[1]].erase(p[2]); // p[1] = destination, p[2] = timestamp
+
+        return p;
+    }
+    
+    int getCount(int destination, int startTime, int endTime) {
+        return time_dest_packs[destination].Count(startTime,endTime);
+    }
+};
