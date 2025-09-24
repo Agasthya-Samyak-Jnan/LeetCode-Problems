@@ -7,7 +7,14 @@ using namespace std;
 
 /* HASH TABLE METHOD */
 
-/* TIME OPTIMIZED SOLUTION */
+/* 
+   TIME OPTIMIZED SOLUTION - unordered_map
+   Swap value to be removed with last value in the array. 
+   Easy O(1) Time Removals. 
+   Easy O(1) Time Random Access.
+   Easy O(1) Time Inserts.
+   O(2N) Space, N = Number of Unique Values.
+*/ 
 class RandomizedSet {
 public:
     vector<int> nums;
@@ -49,21 +56,26 @@ public:
     }
 };
 
-/* SPACE OPTIMIZED SOLUTION */
+/* 
+   SPACE OPTIMIZED SOLUTION - unordered_set
+   Hash Based Containers can't provide direct random access, since there is no fixed position for elements stored in it,
+   since rehashing keeps occuring while inserting and removing elements. 
+   O(1) Time Removals.
+   O(R) Time Random Access. (0 <= R <= Size of Array).
+   O(1) Time Inserts.
+   O(N) Space, N = Number of Unique Values.
+*/
 class RandomizedSet {
 public:
     unordered_set<int> nums;
-    int n;
     
     RandomizedSet() {
-        n = 0;
         srand(time(nullptr));
     }
     
     bool insert(int val) {
         if (nums.find(val) == nums.end()) {
             nums.insert(val);
-            n++;
             return true;
         }
         return false;
@@ -72,7 +84,6 @@ public:
     bool remove(int val) {
         if (nums.find(val) != nums.end()) {
             nums.erase(val);
-            n--;
             return true;
         }
         return false;
@@ -80,7 +91,17 @@ public:
     
     int getRandom() {
         auto it = nums.begin();
-        advance(it,rand()%n);
+        advance(it,rand()%nums.size());
         return *it;
     }
 };
+
+/* 
+   SPACE OPTIMIZED SOLUTION - unordered_set
+   Hash Based Containers can't provide direct random access, since there is no fixed position for elements stored in it,
+   since rehashing keeps occuring while inserting and removing elements. 
+   O(1) Time Removals.
+   O(R) Time Random Access. (0 <= R <= Size of Array).
+   O(1) Time Inserts.
+   O(N) Space, N = Number of Unique Values.
+*/
