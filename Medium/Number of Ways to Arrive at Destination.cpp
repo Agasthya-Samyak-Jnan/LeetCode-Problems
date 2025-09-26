@@ -25,7 +25,7 @@ public:
     vector<vector<long long>> g1;
     vector<vector<int>> g2;
     int n, mod = 1e9 + 7;
-    long long INF = 1e15;
+    long long INF = 1e15; // 10^15 as INFINITY
 
     // SHORTEST PATH ALGORITHMS to find absolute shortest time paths and build a DAG in Reverse Direction from 'n-1' to '0' node.
     void dijkistra (int src) {
@@ -69,6 +69,7 @@ public:
         this->n = n;
         g1 = vector<vector<long long>>(n,vector<long long>(n,INF));
         g2 = vector<vector<int>>(n);
+        
         for (auto& r : roads) { g1[r[0]][r[1]] = g1[r[1]][r[0]] = r[2]; }
 
         dijkistra(0);

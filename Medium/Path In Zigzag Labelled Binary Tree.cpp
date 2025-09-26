@@ -5,15 +5,6 @@ using namespace std;
 // Link to the Problem : https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/
 // Difficulty : Medium 
 
-struct TreeNode {
-     int val;
-     TreeNode *left;
-     TreeNode *right;
-     TreeNode() : val(0), left(nullptr), right(nullptr) {}
-     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 /* MATHEMATICAL SOLUTION BASED ON PROPERTIES OF BINARY TREE DESCRIBED IN THE PROBLEM. (COMPLETE BINARY TREE WITH ODD LEVELS REVERSED) */
 class Solution {
 public:
