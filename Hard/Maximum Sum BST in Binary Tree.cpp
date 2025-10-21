@@ -17,26 +17,25 @@ struct TreeNode {
 /* DEPTH-FIRST SEARCH (CAN BE SOLVED BY SIMPLER DEPTH-FIRST SEARCH USING MEMOIZATION BUT EXCEEDS TIME LIMIT) */
 class Solution {
 public:
+    vector<int> dfs (TreeNode* root) {
+        
+        if (!root) { return {1, INT_MAX, INT_MIN, 0, 0}; }
 
-    int max_sum = 0;
+        auto left = dfs(root->left);
+        auto right = dfs(root->right);
 
-    // { isBSTvalid, minOfSubtree, maxOfSubtree, subtreeSum }
-    vector<int> isBST (TreeNode* root) {
-        if (!root) { return {1, INT_MAX, INT_MIN, 0}; }
-        auto left = isBST(root->left);
-        auto right = isBST(root->right);
-        if (left[0] && right[0] && left[2] < root->val && root->val < right[1]) {
-            int MIN = min(left[1],root->val);
-            int MAX = max(right[2],root->val);
-            int sum = left[3] + right[3] + root->val; 
-            max_sum = max(max_sum,sum);
-            return {1, MIN, MAX, sum}; 
+        if (left[0] and right[0] and left[2] < root->val and root->val < right[1]) {
+            int MIN = min({left[1],right[1],root->val});
+            int MAX = max({left[2],right[2],root->val});
+            int sum = left[3] + right[3] + root->val;
+            int max_sum = max({left[4],right[4],sum});
+            return {1, MIN, MAX, sum, max_sum};
         }
-        return {0, INT_MAX, INT_MIN, 0};
+
+        return {0, INT_MAX, INT_MIN, 0, max(left[4],right[4])};
     }
 
     int maxSumBST(TreeNode* root) {
-        isBST(root);
-        return max_sum;
+        return dfs(root)[4];
     }
 };
