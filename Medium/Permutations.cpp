@@ -1,11 +1,11 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 // Link to the Problem: https://leetcode.com/problems/permutations/
 // Difficulty: Medium
 
 using namespace std; 
 
-void permutations(vector<vector<int> >& ans,vector<int> nums,int i) { 
+void permutations(vector<vector<int>>& ans,vector<int> nums,int i) { 
 
     if (i == nums.size()-1) { 
         ans.push_back(nums); 
