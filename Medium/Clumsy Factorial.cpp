@@ -20,7 +20,7 @@ public:
 
         if (n < 3) { return n; }
 
-        int num = n, factorial = 2 * ((n * (n-1)) / (n-2));
+        int factorial = 2 * ((n * (n-1)) / (n-2));
         char mode = 'C';
 
         while (n >= 3) {
@@ -51,6 +51,26 @@ public:
         // Finally reduced to,
         if (n > 0 and mode == 'A') { factorial += n--; }
         factorial -= n;
+        
+        return factorial;
+    }
+};
+
+/* MOST OPTIMIZED SOLUTION : WE CALCULATE 'A' AND 'C' TERMS COMBINED. */
+class Solution {
+public:
+    int clumsy(int n) {
+
+        if (n < 4) { return max(1,n*n-n); } // self-engineered equation : max(1,n*n-n) maps n->ans as follows : 1->1, 2->2, 3->6
+
+        int factorial = 2 * ((n * (n-1)) / (n-2));
+
+        while (n >= 4) {
+            factorial += (-((n * (n-1)) / (n-2)) + (n-3)); 
+            n -= 4;
+        }
+
+        if (n>0) { factorial -= max(1,n*n-n); } // self-engineered equation : max(1,n*n-n) maps n->ans as follows : 1->1, 2->2, 3->6
         
         return factorial;
     }
