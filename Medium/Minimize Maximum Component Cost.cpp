@@ -22,7 +22,7 @@ public:
         iota(parent.begin(),parent.end(),0);
     }
 
-    void Union (int a, int b, int w) {
+    void Union (int a, int b) {
         int A = find(a), B = find(b);
         if (A == B) { return; }
         if (rank[A] > rank[B]) { 
@@ -54,7 +54,7 @@ public:
         int i = 0;
         UFS ufs(n);
         while (ufs.components > k) {
-            ufs.Union(edges[i][0],edges[i][1],edges[i][2]);
+            ufs.Union(edges[i][0],edges[i][1]);
             i++;
         }
 
